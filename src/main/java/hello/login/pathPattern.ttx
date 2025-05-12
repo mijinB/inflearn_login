@@ -1,0 +1,23 @@
+# https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/util/pattern/PathPattern.html
+
+📌PathPattern 공식문서
+? 한 문자 일치
+* 경로(/) 안에서 0개 이상의 문자 일치
+** 경로 끝까지 0개 이상의 경로(/) 일치
+{spring} 경로(/)와 일치하고 spring이라는 변수로 캡처
+{spring:[a-z]+} matches the regexp [a-z]+ as a path variable named "spring"
+{spring:[a-z]+} regexp [a-z]+ 와 일치하고, "spring" 경로 변수로 캡처
+{*spring} 경로가 끝날 때 까지 0개 이상의 경로(/)와 일치하고 spring이라는 변수로 캡처
+
+💡Examples
+/pages/t?st.html — matches /pages/test.html, /pages/tXst.html but not /pages/
+toast.html
+/resources/*.png — matches all .png files in the resources directory
+/resources/** — matches all files underneath the /resources/ path, including /
+resources/image.png and /resources/css/spring.css
+/resources/{*path} — matches all files underneath the /resources/ path and
+captures their relative path in a variable named "path"; /resources/image.png
+will match with "path" → "/image.png", and /resources/css/spring.css will match
+with "path" → "/css/spring.css"
+/resources/{filename:\\w+}.dat will match /resources/spring.dat and assign the
+value "spring" to the filename variable
